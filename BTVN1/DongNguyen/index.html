@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <title>Personal profile</title>
+    <script src="script/load_data.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div class="container-inner" style="background-image: url('./img/window-desktop-bliss.jpg'); background-size: 150% 100%;">
+            <div id="center-content">
+                <div id="name">ĐÔNG NGUYỄN</div>
+                <div id="avatar-container" onclick="changeAvatar(this)">
+                    <img id="avatar" alt="Bowse file" src="img/default-avatar.jpeg" width="100px" height="100px">
+                    <script>firstLoadAvatar()</script>
+                    <img id="avatar-hover" alt="Bowse file" src="img/icon-browsefile.png" width="100px" height="100px">
+                </div>
+                <div id="about-me" class="editable-text">
+                    <p id="info0">Come with power, I am friendly and helpful<br>Hope that we can work together</p>
+                    <div class="editbox">
+                        <textarea></textarea>
+                        <button>Save</button>
+                    </div>
+                </div>
+            </div>
+                
+            <div id="contact">
+                <a id="contact-fb" href="https://www.facebook.com/NMT2610" target="_blank">
+                    <img src="img/icon-fb.png" width="70px" height="70px">
+                </a>
+                <a id="contact-instagram" href="https://www.instagram.com/dongnguyen3805" target="_blank">
+                    <img src="img/icon-instagram.png" width="70px" height="70px">
+                </a>
+                <table id="contact-phone-mail">
+                    <tr>
+                        <td>
+                            <img src="img/icon-phone.png" width="20px" height="20px">
+                        </td>
+                        <td>+84334007127</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="img/icon-mail.png" width="20px" height="20px">
+                        </td>
+                        <td>nvdkg1999@gmail.com</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container-inner">
+            <div id="information">
+                <div class="information-item editable-text">
+                    <h2>Education</h2>
+                    <p id="info1" >Graduated from Nguyen Hung Son high school. Studying computer sciences in Can Tho university</p>
+                    <div class="editbox">
+                        <textarea></textarea>
+                        <button>Save</button>
+                    </div>
+                </div>
+                <div class="information-item editable-text">
+                    <h2>Skill</h2>
+                    <p id="info2">C/C++, Java, Python, HTML, CSS, Javascript, Oracle, MySQL, MS Office,...</p>
+                    <div class="editbox">
+                        <textarea></textarea>
+                        <button>Save</button>
+                    </div>
+                </div>
+                <div class="information-item editable-text">
+                    <h2>Hobbies</h2>
+                    <p id="info3">Code, Solve rubik cubes, play game, music,...</p>
+                    <div class="editbox">
+                        <textarea></textarea>
+                        <button>Save</button>
+                    </div>
+                </div>
+            </div>
+            <script>firstLoadInfo()</script>
+        </div>
+    </div>
+    <script src="script/change_avatar.js"></script>
+    <script src="script/change_info.js"></script>
+</body>
+</html>
