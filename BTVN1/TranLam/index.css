@@ -1,0 +1,140 @@
+html,
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+#container {
+  display: grid;
+  width: 50%;
+  min-height: 700px;
+  margin: auto;
+  grid-template-columns: repeat(2, 400px);
+}
+.introduction {
+  padding: 10%;
+  background-image: url("https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-repeat: no-repeat;
+  color: white;
+  border: 1px solid lightgray;
+}
+#avatar-input {
+  display: none;
+}
+#avatar-label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#description {
+  padding: 10%;
+  border: 1px solid lightgray;
+}
+.inner-intro {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.inner-intro header {
+  flex: 1;
+}
+.center-content {
+  flex: 2;
+  text-align: center;
+}
+#avatar {
+  border-radius: 70px;
+  height: 140px;
+  width: 140px;
+}
+.email-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.email-content a {
+  border: 1px solid white;
+  border-radius: 35px;
+  height: 70px;
+  width: 80px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+.email-content a img {
+  height: 30px;
+  width: 30px;
+  margin-top: 10px;
+}
+#inner-des {
+  height: 95%;
+  display: grid;
+}
+.des-article {
+  margin: 10px;
+  position: relative;
+  bottom: 0px;
+}
+.des-article:hover {
+  bottom: 10px;
+  transition: bottom 0.3s;
+}
+.des-article a {
+  color: #f44336;
+  font-size: small;
+}
+.des-article div {
+  display: flex;
+}
+.edit-button {
+  display: none;
+  padding-right: 5px;
+  color: #1976d2;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.save-button {
+  display: none;
+  padding-right: 5px;
+  color: #2e7d32;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.delete-button {
+  display: none;
+  color: #d50000;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+.des-article:hover button {
+  display: inline-block;
+}
+.header-project {
+  display: inline-block;
+  flex-grow: 1;
+  font-weight: bold;
+  font-size: large;
+}
+.header-project:focus {
+  border: 1px solid #90caf9;
+  transition: border 1s ease-in-out;
+}
+.article-project:focus {
+  border: 1px solid #90caf9;
+  transition: border 1s ease-in-out;
+}
+#add-details {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#add-details button {
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  background-color: #d50000;
+  cursor: pointer;
+}

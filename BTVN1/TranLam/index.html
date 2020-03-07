@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0" />
+    <title>HOMEWORK</title>
+    <link rel="stylesheet" href="index.css" ></link>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <main id="container">
+      <main class="introduction">
+        <main class="inner-intro">
+          <header>Tran Lam - UI/UX Designer</header>
+          <main class="center-content">
+            <div>
+              <img id="avatar" src="avatar1.jpg">
+            </div>
+            <div>
+              <label id="avatar-label" for="avatar-input">Select avatar</label>
+              <input id="avatar-input" onchange="changeAvatar(event)" type="file" >
+            </div>
+            <br/>
+            <article>
+              <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae eum aut neque nihil deleniti, minus saepe aliquam architecto accusantium! Beatae.
+              </div>
+              <br/>
+              <div>
+                follow me on <a style="color: #f44336;" href="https://www.google.com.vn/" target="blank">Instagram</a>
+              </div>
+            </article>
+          </main>
+          <main class="email-content">
+          <a href="https://www.google.com.vn/" target="blank">
+              <div>
+              <img src="email.png">
+              </div>
+              <div>
+                Email
+              </div>
+            </a>
+          </main>
+        </main>
+      </main>
+    <main id="description">
+      <main id="inner-des">
+        <article class="des-article">
+          <div>
+            <header class="header-project">PROJECT A</header>
+            <button class="edit-button" onclick="editItem(event.target)">Edit</button>
+            <button class="save-button" onclick="saveItem(event.target)">Save</button>
+            <button class="delete-button" onclick="deleteItem(event.target)">Delete</button>
+          </div>
+          <article class="article-project">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero aspernatur neque est recusandae commodi temporibus eligendi quidem ab, voluptatum totam.</article>
+          <br/>
+          <a class="site" href="https://www.google.com.vn/" target="blank" >VISIT SITE &gt;</a>
+        </article>
+        <article class="des-article" >
+          <div>
+            <header class="header-project">PROJECT B</header>
+            <button class="edit-button" onclick="editItem(event.target)">Edit</button>
+            <button class="save-button" onclick="saveItem(event.target)">Save</button>
+            <button class="delete-button" onclick="deleteItem(event.target)">Delete</button>
+          </div>
+          <article class="article-project">Lorem iasum dolor sit, amet consectetur adiaisicing elit. Consectetur, eligendi quae? Voluatatibus sequi eaque non deleniti delectus nostrum nesciunt aliquam?</article>
+          <br/>
+          <a class="site" href="https://www.google.com.vn/" target="blank" >VISIT SITE &gt;</a>
+        </article>
+        <article class="des-article" >
+          <div>
+            <header class="header-project">PROJECT C</header>
+            <button class="edit-button" onclick="editItem(event.target)">Edit</button>
+            <button class="save-button" onclick="saveItem(event.target)">Save</button>
+            <button class="delete-button" onclick="deleteItem(event.target)">Delete</button>
+          </div>
+          <article class="article-project">Lorem iasum dolor sit, amet consectetur adiaisicing elit. Consectetur, eligendi quae? Voluatatibus sequi eaque non deleniti delectus nostrum nesciunt aliquam?</article>
+          <br/>
+          <a class="site" href="https://www.google.com.vn/" target="blank" >VISIT SITE &gt;</a>
+        </article>
+      </main>
+      <main id="add-details">
+        <button onclick="addDetails()">ADD DETAILS</button>
+      </main>
+    </main>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
