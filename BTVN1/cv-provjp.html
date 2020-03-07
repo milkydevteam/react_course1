@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/da0ba55b53.js" crossorigin="anonymous"></script>
+    <script src="./jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <section id="left">
+            <p id="name">Vũ Hoàng Đức Hiếu</p>
+            <div class="center-left-section">
+                <img class="circle-image avatar" src="./ava1.jpg" alt="Anh Dai Dien">
+                <div class="content">
+                    <p id="introduce">Chào mọi người mình là Hiếu. Mình đang trên con đường trở thành fullstack web
+                        developer. </p>
+                   
+                </div>
+                <div class="mail-button">
+                    <h4>Follow mình tại</h4>
+                    <a id="linkFB" href="https://www.facebook.com/conocsen.307" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+                    
+                </div>
+
+            </div>
+        </section>
+        <section id="right">
+            <div>
+                <h3>Học vấn</h3>
+
+                <p id="study">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores deleniti a error enim
+                    autem deserunt quibusdam molestias ab ratione fuga maxime adipisci quas ipsam corporis ipsa
+                    nesciunt, sequi sed dolorem!</p>
+
+
+            </div>
+            <div>
+                <h3>Khả năng lập trình</h3>
+
+                <p id="abilities">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur facilis odio quae
+                    veniam
+                    quia sed voluptatem in, vel velit nemo est! Molestiae voluptates iste assumenda a nihil! Ut,
+                    porro. Commodi.</p>
+
+            </div>
+            <div>
+                <h3>
+                    Sở Thích
+                </h3>
+
+                <p id="hobbies">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, blanditiis
+                    sapiente optio a amet, dolore ullam assumenda quasi hic nihil nostrum doloremque eligendi.
+                    Deserunt impedit illo necessitatibus hic rerum excepturi.</p>
+
+
+            </div>
+            <div>
+                <h3>Mong muốn</h3>
+
+
+                <p id="dreams">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam aliquid assumenda
+                    temporibus sunt, voluptatibus minus omnis reiciendis libero ipsam ad expedita ea quasi corrupti.
+                    Qui aut quidem magni ipsa dolores.</p>
+
+
+            </div>
+        </section>
+    </main>
+    <div style="cursor: pointer;" onclick="location.href='custom-cv.html'" class="right-buttons">
+        Chỉnh sửa
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        if (!localStorage.name){
+            let name = $("#name").text()
+            let introduce = $("#introduce").text()
+            let linkFB = $("#linkFB").attr("href")
+            let study = $("#study").text()
+            let abilities = $("#abilities").text()
+            let hobbies = $("#hobbies").text()
+            let dreams = $("#dreams").text()
+            localStorage.setItem("name",name)
+            localStorage.setItem("introduce",introduce)
+            localStorage.setItem("linkFB",linkFB)
+            localStorage.setItem("study",study)
+            localStorage.setItem("abilities",abilities)
+            localStorage.setItem("hobbies",hobbies)
+            localStorage.setItem("dreams",dreams)
+            console.log(localStorage)
+        } else {
+            $("p").each(function(){
+                let id = $(this).attr("id")
+                let value = localStorage.getItem(id)
+                $("#"+id).text(value)
+            })
+            
+            $("#linkFB").attr("href", localStorage.getItem("linkFB"))
+        }
+    })
+</script>
+
+</html>
