@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <script src="script/load_data.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="left-header" onclick="changeAvatar(this)">
+        <input id="file" type="file" style="display: none;" />
+        <img src="./img/avatar.png" alt="Avatar" class="avatar" id="avatar" />
+      </div>
+      <script>
+        loadAvatar();
+      </script>
+      <div class="right-header" id="right-header">
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            placeholder="Name"
+            name="name"
+            id="name"
+          />
+          <label for="name" class="form__label">My Name</label>
+        </div>
+
+        <div class="form__group field">
+          <input
+            type="input"
+            class="form__field"
+            placeholder="Address"
+            name="address"
+            id="address"
+          />
+          <label for="name" class="form__label">Address</label>
+        </div>
+      </div>
+
+      <div>
+        <button style="background-color: green; padding: 10px;" onclick="add_more_info()">
+          <strong style="color: white;">Add more</strong>
+        </button>
+      </div>
+      <div>
+        <button style="background-color: green; padding: 10px;" onclick="update_info()">
+          <strong style="color: white;">SAVE</strong>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <span class="txtContent">
+        Follow me on
+        <a
+          class="txtHighLight"
+          href="https://www.facebook.com/khanhduy.179"
+          target="_blank"
+        >
+          <i class="fa fa-facebook"></i>
+        </a>
+      </span>
+    </main>
+    <footer onclick="window.location.href='mailto:lekhanhduyduy1201@gmail.com'">
+      <i class="fa fa-envelope" style="color: white;"></i>
+      <a class="txtEmail" href="mailto:lekhanhduyduy1201@gmail.com">Email</a>
+    </footer>
+  </body>
+  <script>
+    loadData();
+  </script>
+  <script src="script/change_avatar.js"></script>
+  <script src="script/update_info.js"></script>
+</html>
