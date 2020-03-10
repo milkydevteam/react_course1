@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, TextInput } from 'react-native';
 import InfoItem from './src/component/InfoItem';
-import StorageUtils from './src/tool/AsynStorageUtils'
+import StorageUtils from './src/tool/StorageUtils'
+import { Icon } from 'react-native-elements';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+    this.idCounter = 0;
     this.state = {
         name: "Đông Nguyễn",
         editingName: false,
+        backgroundUri: undefined,
+        avatarUri: undefined,
+        items: [],
     };
   }
 
   componentDidMount(){
-    
+
+    StorageUtils.getData("@name").then(name => {
+      if (name) this.setState({name: name});
+    })
+
+    StorageUtils.getData("@idCounter").then(idCounter => {
+      if (idCounter) this.idCounter = idCounter;
+    })
+
+    StorageUtils.getKeys().then(keys => {
+      keys.forEach(key => {
+        if (key.startsWith("@info")){// key: @info1, @info2,...
+          StorageUtils.getData(key).then(jsonStr => {// jsonStr: JSONString { title: "...", content: "..."}
+            let index = parseInt(key.replace("@info",""));
+            let data = JSON.parse(jsonStr);
+            let array = this.state.items.slice();
+            array[index] = <InfoItem id={index} key={index} data={data} removeItem={this.removeItem.bind(this)}/>;
+            this.setState({items: array});
+          })
+        }
+      });
+    })
   }
 
   uploadBackground(){
@@ -24,8 +50,24 @@ export default class App extends Component {
     console.log("uploadAvatar")
   }
 
-  renderInfoItems(){
+  changeName(){
+    this.setState({editingName: false});
+    StorageUtils.storeData("@name", this.state.name);
+  }
 
+  addMoreInfoItem(){
+    let index = this.idCounter++;
+    let array = this.state.items.slice();
+    array[index] = <InfoItem id={index} key={index} removeItem={this.removeItem.bind(this)}/>;
+    this.setState({items: array});
+    StorageUtils.storeData("@idCounter", this.idCounter.toString());
+  }
+
+  removeItem(index){
+    let array = this.state.items.slice();
+    array.pop(index);
+    StorageUtils.removeItem("@info"+index);
+    this.setState({items: array});
   }
 
   render(){
@@ -50,8 +92,15 @@ export default class App extends Component {
                 maxLength={100}
                 onTouchStart={() => this.setState({editingName: true})} 
                 onChangeText={(text) => this.setState({name: text})}
-                onBlur={() => this.setState({editingName: false})}
+                onBlur={this.changeName.bind(this)}
                 >{this.state.name}</TextInput>
+          </View>
+          <View style={styles.itemList}>
+            {this.state.items}
+            <TouchableOpacity style={styles.addMoreButton} onPress={this.addMoreInfoItem.bind(this)}>
+              <Icon name={"add-circle"}/>
+              <Text>Add more information</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -63,7 +112,7 @@ const styles = StyleSheet.create({
   container: {
   },
   scrollView: {
-    width: "100%"
+    width: "100%",
   },  
   backgroundImg:{
     width: "100%",
@@ -74,7 +123,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   avatarContainer: {
-    height: 300,
+    // height: 300,
     alignItems: "center",
     position: "relative",
     top: -100,
@@ -97,7 +146,21 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 30,
     fontWeight: "bold",
-    marginTop: 10
+    margin: 10,
+  },
+  addMoreButton: {
+    margin: 10,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  itemList: {
+    width: "100%",
+    position: "relative",
+    top: -100,
+    alignItems: "center",
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 
 });

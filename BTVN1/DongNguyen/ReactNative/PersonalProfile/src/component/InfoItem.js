@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { Icon } from 'react-native-elements'
+import StorageUtils from '../tool/StorageUtils'
 
 class InfoItem extends Component {
   constructor(props) {
@@ -11,30 +12,34 @@ class InfoItem extends Component {
         editingTitle: false,
         editingContent: false,
     };
-    const {data} = this.props;
+    const {data, id} = this.props; // data: Object{title, content}, id: (Number)index
     if (data) {
-        this.state.title = data.title || "Title";
-        this.state.content = data.content || "Content";
-    }
+      this.state.title = data.title || "Title";
+      this.state.content = data.content || "Content";
+    } else this.saveDataAsJsonStr(id); // first sava for new item
   }
 
-  editTitle(text){
-    this.setState({title: text})
-  }
-  editContent(text){
-    if (!this.state.editingContent) this.setState({editingContent: true});
-    this.setState({content: text})
+  saveDataAsJsonStr(index){
+    let jsonData = JSON.stringify({
+      title: this.state.title,
+      content: this.state.content,
+    })
+    StorageUtils.storeData("@info"+index, jsonData);
   }
 
-
-  removeItem(){
-    console.log("removeItem")
+  saveTitle(index){
+    this.saveDataAsJsonStr(index);
+    this.setState({editingTitle: false});
+  }
+  saveContent(index){
+    this.saveDataAsJsonStr(index);
+    this.setState({editingContent: false});
   }
 
 
 
   render() {
-    console.log(this.state.title, this.state.content);
+    const {removeItem, id} = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.titleContainer}>
@@ -46,10 +51,10 @@ class InfoItem extends Component {
                         selectTextOnFocus
                         onTouchStart={() => {this.setState({editingTitle: true})}}
                         onChangeText={(text) => this.setState({title: text})}
-                        onBlur={() => this.setState({editingTitle: false})}
+                        onBlur={() => this.saveTitle(id)}
                     >{this.state.title}</TextInput>  
             </View>
-            <TouchableOpacity stype={styles.deleteButton} onPress={this.removeItem}>
+            <TouchableOpacity stype={styles.deleteButton} onPress={() => removeItem(id)}>
                 <Icon name={"clear"}/>
             </TouchableOpacity>
         </View>
@@ -59,7 +64,7 @@ class InfoItem extends Component {
             selectTextOnFocus
             onTouchStart={() => {this.setState({editingContent: true})}}
             onChangeText={(text) => this.setState({content: text})}
-            onBlur={() => this.setState({editingContent: false})}
+            onBlur={() => this.saveContent(id)}
             >{this.state.content}</TextInput>
       </View> 
     );
@@ -68,6 +73,7 @@ class InfoItem extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: 10,
         width: "100%",
         height: "auto",
         borderRadius: 5,
