@@ -49,7 +49,7 @@ class InfoItem extends Component {
                         editable
                         maxLength={50}
                         selectTextOnFocus
-                        onTouchStart={() => {this.setState({editingTitle: true})}}
+                        onFocus={() => {this.setState({editingTitle: true})}}
                         onChangeText={(text) => this.setState({title: text})}
                         onBlur={() => this.saveTitle(id)}
                     >{this.state.title}</TextInput>  
@@ -62,7 +62,7 @@ class InfoItem extends Component {
             editable 
             maxLength={400}
             selectTextOnFocus
-            onTouchStart={() => {this.setState({editingContent: true})}}
+            onFocus={() => {this.setState({editingContent: true})}}
             onChangeText={(text) => this.setState({content: text})}
             onBlur={() => this.saveContent(id)}
             >{this.state.content}</TextInput>
