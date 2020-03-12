@@ -22,10 +22,15 @@ export default class BackgroudView extends Component {
   }
 
   uploadBackground() {
-    pickImage('Pick a picture for your new background', (source, path) => {
-      StorageUtils.storeData('@background', path);
-      this.setState({backgroundSource: source});
-    });
+    const {editable, onNotEditable} = this.props;
+    if (editable){
+      pickImage('Pick a picture for your new background', (source, path) => {
+        StorageUtils.storeData('@background', path);
+        this.setState({backgroundSource: source});
+      });
+    } else {
+      onNotEditable();
+    }
   }
 
   render() {

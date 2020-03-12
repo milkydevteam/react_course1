@@ -11,9 +11,7 @@ var storeData = async (key, value) => {
 var getData = async key => {
   try {
     const value = await AsyncStorage.getItem(key);
-    if (value !== null) {
-      return value;
-    }
+    return value;
   } catch (e) {
     console.log('Get [' + key + ']: ' + e);
   }
@@ -22,9 +20,7 @@ var getData = async key => {
 var getKeys = async () => {
   try {
     const values = await AsyncStorage.getAllKeys();
-    if (values !== null) {
-      return values;
-    }
+    return values;
   } catch (e) {
     console.log('Get keys: ' + e);
   }

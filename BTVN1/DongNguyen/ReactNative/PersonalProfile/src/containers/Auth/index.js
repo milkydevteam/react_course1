@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import Form from './components/Form';
 
 export default class Auth extends Component {
   constructor(props) {
@@ -7,11 +8,37 @@ export default class Auth extends Component {
     this.state = {};
   }
 
+  goToHome() {
+    // invoke when login successfully
+    const gotTokenCallback = this.props.navigation.getParam('gotTokenCallback');
+    if (gotTokenCallback) {
+      gotTokenCallback();
+    }
+    this.props.navigation.navigate('Home');
+  }
+
   render() {
     return (
-      <View>
-        <Text> index </Text>
+      <View style={styles.container}>
+        <Text style={styles.welcomeText}>
+          Please login to edit your own profile
+        </Text>
+        <Form loginCallback={this.goToHome.bind(this)} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcomeText: {
+    fontSize: 20,
+    marginBottom: 30,
+  },
+});

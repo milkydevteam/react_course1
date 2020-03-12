@@ -31,12 +31,24 @@ class InfoItem extends Component {
   }
 
   saveTitle(index) {
-    this.saveDataAsJsonStr(index);
-    this.setState({editingTitle: false});
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      this.saveDataAsJsonStr(index);
+      this.setState({editingTitle: false});
+    } else {
+      this.setState({title: this.prevTitle, editingTitle: false});
+      onNotEditable();
+    }
   }
   saveContent(index) {
-    this.saveDataAsJsonStr(index);
-    this.setState({editingContent: false});
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      this.saveDataAsJsonStr(index);
+      this.setState({editingContent: false});
+    } else {
+      this.setState({content: this.prevContent, editingContent: false});
+      onNotEditable();
+    }
   }
 
   render() {
@@ -54,6 +66,7 @@ class InfoItem extends Component {
               maxLength={50}
               selectTextOnFocus
               onFocus={() => {
+                this.prevTitle = this.state.title;
                 this.setState({editingTitle: true});
               }}
               onChangeText={text => this.setState({title: text})}
@@ -76,6 +89,7 @@ class InfoItem extends Component {
           maxLength={400}
           selectTextOnFocus
           onFocus={() => {
+            this.prevContent = this.state.content;
             this.setState({editingContent: true});
           }}
           onChangeText={text => this.setState({content: text})}

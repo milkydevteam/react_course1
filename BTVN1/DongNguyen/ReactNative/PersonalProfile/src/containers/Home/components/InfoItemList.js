@@ -37,6 +37,7 @@ export default class InfoItemList extends Component {
   }
 
   createItem(index, data) {
+    const {editable, onNotEditable} = this.props;
     let itemMap = this.state.items;
     itemMap = itemMap.set(
       '@info' + index,
@@ -45,22 +46,34 @@ export default class InfoItemList extends Component {
         key={index}
         data={data}
         removeItem={this.removeItem.bind(this)}
+        editable={editable}
+        onNotEditable={onNotEditable}
       />,
     );
     this.setState({items: itemMap});
   }
 
   addMoreInfoItem() {
-    let index = this.idCounter++;
-    this.createItem(index);
-    StorageUtils.storeData('@idCounter', this.idCounter.toString());
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      let index = this.idCounter++;
+      this.createItem(index);
+      StorageUtils.storeData('@idCounter', this.idCounter.toString());
+    } else {
+      onNotEditable();
+    }
   }
 
   removeItem(index) {
-    let itemMap = this.state.items;
-    itemMap.delete('@info' + index);
-    StorageUtils.removeItem('@info' + index);
-    this.setState({items: itemMap});
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      let itemMap = this.state.items;
+      itemMap.delete('@info' + index);
+      StorageUtils.removeItem('@info' + index);
+      this.setState({items: itemMap});
+    } else {
+      onNotEditable();
+    }
   }
 
   render() {

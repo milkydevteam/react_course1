@@ -29,16 +29,32 @@ export default class Avatar extends Component {
     });
   }
 
+  startEditName() {
+    this.prevName = this.state.name;
+    this.setState({editingName: true});
+  }
+
   changeName() {
-    this.setState({editingName: false});
-    StorageUtils.storeData('@name', this.state.name);
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      StorageUtils.storeData('@name', this.state.name);
+      this.setState({editingName: false});
+    } else {
+      this.setState({name: this.prevName, editingName: false});
+      onNotEditable();
+    }
   }
 
   uploadAvatar() {
-    pickImage('Pick a picture for your new avatar', (source, path) => {
-      StorageUtils.storeData('@avatar', path);
-      this.setState({avatarSource: source});
-    });
+    const {editable, onNotEditable} = this.props;
+    if (editable) {
+      pickImage('Pick a picture for your new avatar', (source, path) => {
+        StorageUtils.storeData('@avatar', path);
+        this.setState({avatarSource: source});
+      });
+    } else {
+      onNotEditable();
+    }
   }
 
   render() {
@@ -55,7 +71,7 @@ export default class Avatar extends Component {
           selectTextOnFocus
           editable
           maxLength={100}
-          onFocus={() => this.setState({editingName: true})}
+          onFocus={this.startEditName.bind(this)}
           onChangeText={text => this.setState({name: text})}
           onBlur={this.changeName.bind(this)}>
           {this.state.name}

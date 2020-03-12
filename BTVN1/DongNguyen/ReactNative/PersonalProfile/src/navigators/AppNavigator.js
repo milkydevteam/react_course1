@@ -4,7 +4,7 @@ import Home from '../containers/Home';
 
 const AppNavigator = createStackNavigator({
   Home: {screen: Home},
-  Auth: {screen: Auth},
+  Auth: {screen: Auth, navigationOptions: {title: 'Log in'}},
 });
 
 export default AppNavigator;
