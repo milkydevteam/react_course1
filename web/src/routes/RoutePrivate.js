@@ -8,7 +8,7 @@ function PrivateRoute({ component: Component, ...rest }) {
   // check xem co token hay khong?
   // neu co token, se call len server lay thong tin user or ...
   // neu khong co, thi redirect ve login
-
+  console.log("Day la ...rest: ", rest)
   if (!token) {
     return (
       <Redirect

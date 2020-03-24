@@ -11,7 +11,7 @@ import RoutePrivate from './routes/RoutePrivate';
 import Background from './components/Background';
 import AppRouters from './routes';
 
-function App(props) {
+function App() {
   const renderRouter = () =>
     AppRouters.map((router, index) => {
       if (router.private === false) {
