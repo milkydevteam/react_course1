@@ -19,7 +19,6 @@ const DataField = memo(function DataField(props) {
   const [inputName, setName] = useState(props.data.name);
   const [inputValue, setValue] = useState(props.data.value);
   const [isHovering, handleMouseHover] = useState(false);
-  const [isButtonClicked, handleButtonClicked] = useState(false);
   let isChangeValue = false;
   function onChangeName(e) {
     setName(e.target.value);

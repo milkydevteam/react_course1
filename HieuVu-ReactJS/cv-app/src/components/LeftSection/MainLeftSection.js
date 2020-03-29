@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Info from './LeftSectionComponents/Info';
-import Follow from './LeftSectionComponents/Follow';
+import Info from "./components/Info";
+import Follow from './components/Follow';
 import Input from '../InputField';
 
 const Img = (props) => (
