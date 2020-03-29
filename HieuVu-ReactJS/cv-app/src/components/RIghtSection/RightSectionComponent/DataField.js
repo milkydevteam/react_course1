@@ -7,13 +7,12 @@ const TextBox = styled.input`
   background: transparent;
   margin-bottom: 10px;
   outline: none;
-`;
-
-const Container = styled.div`
-  .hover {
+  &:hover {
     border-bottom: 1px solid blue;
   }
 `;
+
+const Container = styled.div``;
 
 const DataField = memo(function DataField(props) {
   const [inputName, setName] = useState(props.data.name);
@@ -39,14 +38,12 @@ const DataField = memo(function DataField(props) {
         value={inputName}
         disabled={!isHovering}
         onChange={onChangeName}
-        className={`${isHovering ? 'hover' : ''}`}
       />
       <br />
       <TextBox
         value={inputValue}
         onChange={onChangeValue}
         disabled={!isHovering}
-        className={`${isHovering ? 'hover' : ''}`}
       />
       <br />
     </Container>
