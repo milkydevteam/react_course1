@@ -1,45 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
-import PublicPage from "./containers/public/PublicPage"
-import ProtectedPage from "./containers/Protected"
-import AuthButton from "./containers/auth/AuthButton"
-import PrivateRoute from "./routes/PrivateRoute"
-import Login from "./containers/Login"
-import ProtectedPage2 from "./containers/Protected2"
+import React, { useState } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import PrivateRoute from './route/PrivateRoute';
+import Home from "./pages/Profile";
+import NewFeed from "./pages/NewFeed";
+import LoginPage from "./pages/Login"
+import { AuthContext } from "./context/auth";
 
-function App() {
+
+
+function App(props) {
+
+  const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+  const [isAuthenticate, changeAuthenticateStatus] = useState(existingTokens);
+
+  const setTokens = (data) => {
+    localStorage.setItem("tokens", JSON.stringify(data));
+    changeAuthenticateStatus(data);
+  }
+
+
   return (
-    <>
-      {/* <AuthButton/> */}
+    <AuthContext.Provider value={{ isAuthenticate, changeAuthenticateStatus: setTokens }}>
       <Router>
-      
-        <Switch>  
-          <Route exact path="/">
-            <PublicPage />
-            {/* <AuthButton /> */}
-          </Route>
-          {/* <Route exact path="/login">
-            <Login />
-          </Route> */}
-          <PrivateRoute exact path="/protected">
-            <ProtectedPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/protected2">
-            <ProtectedPage2 />
-          </PrivateRoute>
-        </Switch>
+        
+        
+          <Route path="/login" component={LoginPage} />
+          <PrivateRoute exact path="/" component={NewFeed} />
+        
       </Router>
-    </>
+    </AuthContext.Provider>
   );
 }
 
