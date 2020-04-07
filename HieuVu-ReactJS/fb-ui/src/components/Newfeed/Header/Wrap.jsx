@@ -2,36 +2,20 @@ import React from 'react';
 import styled from "styled-components"
 
 const HeaderPosition = styled.div`
-    position: relative;
-    z-index: 301;   
-`
-
-const HeaderSize = styled.div`
+    z-index: 301;  
     height: 43px;
-    min-width: 100%;
-`
-
-const HeaderBackground = styled.div`
+    width: 100%; 
     background-color: #4267b2;
     border-bottom: 1px solid #29487d;
     color: #fff;
     display: flex;
-    justify-content: space-between;
     position: fixed;
     top: 0;
     box-sizing: border-box;
-    height: 43px;
-    width: 100%; 
+    padding-right: 205px;
+
 `
 
-const HeaderContainer = styled.div`
-    padding-right: 205px;
-    display: flex;
-    justify-content: space-between
-    height: 42px;
-    position: relative;
-    width: 100%;
-`
 
 const CenterElements = styled.div`
     padding: 0;
@@ -44,4 +28,4 @@ const CenterElements = styled.div`
 `
 
 
-export {HeaderPosition,HeaderSize,HeaderBackground,HeaderContainer,CenterElements}
+export {HeaderPosition,CenterElements}

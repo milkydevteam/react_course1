@@ -6,7 +6,7 @@ const ContainerPosition = styled.div`
     width: 1012px !important;
     margin: 0 auto;
     position: relative;
-    zoom: 1;
+    top: 50px;
 `
 
 const ContainerSize = styled.div`
